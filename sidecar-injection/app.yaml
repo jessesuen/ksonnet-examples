@@ -1,19 +1,13 @@
 apiVersion: 0.1.0
 environments:
-  prod:
+  default:
     destination:
       namespace: default
-      server: https://prod.com
+      server: http://1.2.3.4
     k8sVersion: v1.9.4
-    path: prod
-  qa:
-    destination:
-      namespace: default
-      server: https://qa.com
-    k8sVersion: v1.9.4
-    path: qa
+    path: default
 kind: ksonnet.io/app
-name: ks-stackframe-bug
+name: sidecar-injection
 registries:
   incubator:
     gitVersion:
