@@ -6,6 +6,12 @@ environments:
       server: http://1.2.3.4
     k8sVersion: v1.9.4
     path: default
+  no-sidecar:
+    destination:
+      namespace: no-sidecar
+      server: http://1.2.3.4
+    k8sVersion: v1.9.4
+    path: no-sidecar
 kind: ksonnet.io/app
 name: sidecar-injection
 registries:
