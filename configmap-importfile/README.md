@@ -19,6 +19,8 @@ and demonstrates how jsonnet can import a local file on disk as a string using t
 `components/nginx-configmap.jsonnet:`
 ```
 local params = std.extVar("__ksonnet/params").components["nginx-configmap"];
+local nginxConf = importstr "./nginx.conf";
+local proxyConf = importstr "./proxy.conf";
 {
   "kind": "ConfigMap",
   "apiVersion": "v1",
@@ -26,8 +28,8 @@ local params = std.extVar("__ksonnet/params").components["nginx-configmap"];
     "name": "nginx-configmap"
   },
   "data": {
-    "nginx.conf": (importstr "./nginx.conf") % params,
-    "proxy.conf": (importstr "./proxy.conf") % params,
+    "nginx.conf": nginxConf % params,
+    "proxy.conf": proxyConf % params,
   },
 }
 ```
