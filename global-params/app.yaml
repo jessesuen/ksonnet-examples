@@ -1,0 +1,17 @@
+apiVersion: 0.1.0
+environments:
+  default:
+    destination:
+      namespace: default
+      server: https://localhost:6443
+    k8sVersion: v1.10.3
+    path: default
+  prod:
+    destination:
+      namespace: default
+      server: https://localhost:6443
+    k8sVersion: v1.10.3
+    path: prod
+kind: ksonnet.io/app
+name: global-params
+version: 0.0.1
