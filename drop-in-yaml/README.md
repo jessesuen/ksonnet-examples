@@ -1,10 +1,11 @@
 ## Drop-in YAML with parameterization
 
-This example demonstrates the ability to drop in a YAML file into the components directory, and
+Ksonnet supports native YAML components to be "dropped into" the components directory. This example
+demonstrates the ability to drop in a K8s YAML file into the components directory, and
 apply some parameterization.
 
-In this example we have a normal Kubernetes deployment yaml `nginx-deployment.yaml` file placed in
-the `components` directory:
+In this example we have a normal Kubernetes deployment yaml in the `components` directory at
+[`components/nginx-deployment.yaml`](components/nginx-deployment.yaml)
 
 ```
 apiVersion: apps/v1
@@ -30,7 +31,7 @@ spec:
         - containerPort: 80
 ```
 
-Next we have an create a params entry for it in the `components/params.libsonnet`:
+Next, create a params entry for it in the [`components/params.libsonnet`](components/params.libsonnet):
 
 ```
 {
@@ -42,19 +43,20 @@ Next we have an create a params entry for it in the `components/params.libsonnet
 }
 ```
 
-Finally, in `environments/default/params.libsonnet`, we can override the value of the replicas by
-constructing a overlay patch, as follows:
+Finally, in [`environments/default/params.libsonnet`](environments/default/params.libsonnet), we can
+override the value of the replicas by applying an overlay patch, as follows:
 
 ```
 local envParams = params + {
   components +: {
     'nginx-deployment' +: {
-      spec: {
+      spec +: {
         replicas: 10,
       },
     },
   },
 };
+
 ```
 
 To run this example, run:
