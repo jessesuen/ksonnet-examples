@@ -8,4 +8,4 @@ the repo and run `ks show default` inside the ksonnet app directory of an exampl
 Contributions are welcome!
 
 ## Requirements
-* ksonnet 1.10+
+* ksonnet 1.111+

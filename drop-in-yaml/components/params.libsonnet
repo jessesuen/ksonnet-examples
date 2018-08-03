@@ -1,0 +1,7 @@
+{
+  global: {
+  },
+  components: {
+    'nginx-deployment': {},
+  },
+}
