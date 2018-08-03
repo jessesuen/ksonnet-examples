@@ -1,10 +1,13 @@
 ## Parse YAML with parameterization
 
-This example demonstrates the ability to parse a normal K8s YAML file and customize it using jsonnet.
+This example demonstrates the ability to parse a normal K8s YAML file into a jsonnet object for
+further customization using jsonnet. A `parseYaml` function is provided in ksonnet for conveniently
+parsing a file to a list of jsonnet objects.
 
 In this example we have a normal Kubernetes deployment yaml `nginx-deployment.yaml` file placed in
-the `components/imports` directory. Notice that the image has a placeholder value. This will be
-replaced in the component jsonnet.
+the [`components/imports`](components/imports) directory. This location is arbitrary, but should be
+different than the components directory since otherwise ksonnet will treat it as a drop-in yaml.
+Notice that the image has a placeholder value. This will be replaced in the component jsonnet.
 
 ```
 apiVersion: apps/v1
@@ -30,7 +33,8 @@ spec:
         - containerPort: 80
 ```
 
-In `params.libsonnet`, expose `image` as a parameter to the `nginx-deployment` component:
+In [`params.libsonnet`](components/params.libsonnet), expose `image` as a parameter to the
+`nginx-deployment` component:
 ```
 {
   global: {
@@ -43,7 +47,8 @@ In `params.libsonnet`, expose `image` as a parameter to the `nginx-deployment` c
 }
 ```
 
-Finally, create the `nginx-deployment` jsonnet component for the deployment at `components/nginx-deployment.jsonnet`.
+Finally, create the `nginx-deployment` jsonnet component for the deployment at 
+[`components/nginx-deployment.jsonnet`](components/nginx-deployment.jsonnet).
 The code below will parse the YAML into a jsonnet object. Then replace the container list with
 a list containing our parameterized image:
 
