@@ -1,0 +1,17 @@
+apiVersion: 0.1.0
+environments:
+  default:
+    destination:
+      namespace: abc
+      server: https://my-server-abc
+    k8sVersion: v1.10.3
+    path: default
+  prod:
+    destination:
+      namespace: xyz
+      server: https://my-server-xyz
+    k8sVersion: v1.10.3
+    path: prod
+kind: ksonnet.io/app
+name: env-metadata
+version: 0.0.1
