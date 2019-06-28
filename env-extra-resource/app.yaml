@@ -1,0 +1,24 @@
+apiVersion: 0.1.0
+environments:
+  default:
+    destination:
+      namespace: default
+      server: http://1.2.3.4
+    k8sVersion: v1.9.4
+    path: default
+  extra-resource:
+    destination:
+      namespace: extra-resource
+      server: http://1.2.3.4
+    k8sVersion: v1.9.4
+    path: extra-resource
+kind: ksonnet.io/app
+name: env-extra-resource
+registries:
+  incubator:
+    gitVersion:
+      commitSha: 40285d8a14f1ac5787e405e1023cf0c07f6aa28c
+      refSpec: master
+    protocol: github
+    uri: github.com/ksonnet/parts/tree/master/incubator
+version: 0.0.1
